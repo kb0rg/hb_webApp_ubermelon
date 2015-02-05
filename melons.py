@@ -33,6 +33,18 @@ def shopping_cart():
     """TODO: Display the contents of the shopping cart. The shopping cart is a
     list held in the session that contains all the melons to be added. Check
     accompanying screenshots for details."""
+
+    if session['cart']:
+        print "there is a cart!"
+    else:
+        #hardcoding this for the time being; can add dynamic updating later
+        session['cart'] = {
+            'qty': 1,
+            'price': 2.50,
+            'total': 2.50
+        }
+        print session
+
     return render_template("cart.html")
 
 @app.route("/add_to_cart/<int:id>")
@@ -44,8 +56,25 @@ def add_to_cart(id):
     shopping cart page, while displaying the message
     "Successfully added to cart" """
 
-    return "Oops! This needs to be implemented!"
+    """
+    need to check whether cart exists already
+    if so, add current item to cart
+    if not, create new cart
+    cart is a list.
+    ??? where does quantity get filled in -> idea! each time the "add to cart" 
+        button is clicked, increment 'qty' in session dictionary +1.
+    ??? how do we check session to see if cart exists
+    ??? 
+    """
+    ##????????????????
+    # if 'cart' in session:
+    #     cart = session['cart']
 
+    pyString = "this is a test string"
+    pyCart = ["this", "is","info", "in", "cart"]
+
+    # return "Oops! This needs to be implemented!"
+    return render_template("cart.html", htmlString = pyString, htmlCart = pyCart)
 
 @app.route("/login", methods=["GET"])
 def show_login():
