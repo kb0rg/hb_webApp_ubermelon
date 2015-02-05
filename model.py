@@ -70,6 +70,8 @@ def get_melon_by_id(id):
     melon = Melon(row[0], row[1], row[2], row[3], row[4], row[5],
                   row[6], row[7])
     
+    # import pdb; pdb.set_trace()
+
     return melon
 
 def get_customer_by_email(email):

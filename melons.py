@@ -34,16 +34,6 @@ def shopping_cart():
     list held in the session that contains all the melons to be added. Check
     accompanying screenshots for details."""
 
-    if session['cart']:
-        print "there is a cart!"
-    else:
-        #hardcoding this for the time being; can add dynamic updating later
-        session['cart'] = {
-            'qty': 1,
-            'price': 2.50,
-            'total': 2.50
-        }
-        print session
 
     return render_template("cart.html")
 
@@ -66,15 +56,31 @@ def add_to_cart(id):
     ??? how do we check session to see if cart exists
     ??? 
     """
-    ##????????????????
-    # if 'cart' in session:
-    #     cart = session['cart']
 
     pyString = "this is a test string"
     pyCart = ["this", "is","info", "in", "cart"]
 
-    # return "Oops! This needs to be implemented!"
-    return render_template("cart.html", htmlString = pyString, htmlCart = pyCart)
+    thisMelon = model.get_melon_by_id(id)
+
+    if session['cart']:
+    #hardcoding this for the time being; can add dynamic updating later
+    # After lunch goal: We can change this to update the cart contents. So each time the add_to_cart
+    # function is called, it increments the cart's dictionary values accordingly. 
+        session['cart'] = {
+            'qty': 1,
+            'price': 2.50,
+            'total': 2.50
+        }
+        print session
+    else:
+        print "there is no cart, adding on"
+
+
+
+    # Here, we need to pass the melon info to the shopping_cart Python function
+    # so that it can add the info to the session dictionary
+    return render_template("cart.html", htmlString = pyString, htmlCart = pyCart, jinName = thisMelon.common_name, jinPrice = thisMelon.price)
+
 
 @app.route("/login", methods=["GET"])
 def show_login():
