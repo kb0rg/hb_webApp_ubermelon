@@ -47,40 +47,54 @@ def add_to_cart(id):
     "Successfully added to cart" """
 
     """
-    need to check whether cart exists already
-    if so, add current item to cart
-    if not, create new cart
-    cart is a list.
+
     ??? where does quantity get filled in -> idea! each time the "add to cart" 
         button is clicked, increment 'qty' in session dictionary +1.
-    ??? how do we check session to see if cart exists
     ??? 
     """
 
-    pyString = "this is a test string"
-    pyCart = ["this", "is","info", "in", "cart"]
-
     thisMelon = model.get_melon_by_id(id)
-
-    if session['cart']:
-    #hardcoding this for the time being; can add dynamic updating later
-    # After lunch goal: We can change this to update the cart contents. So each time the add_to_cart
-    # function is called, it increments the cart's dictionary values accordingly. 
-        session['cart'] = {
-            'qty': 1,
-            'price': 2.50,
-            'total': 2.50
-        }
-        print session
+    print vars(thisMelon)
+    #####
+    if session.get('cart'):
+        print "there is a cart! Proceeding..."
     else:
-        print "there is no cart, adding on"
+        session['cart'] = {}
+        print "the cart dict is currently empty. see!:", session['cart']
 
 
+
+
+
+    return render_template("cart.html")
+
+    #####
+
+
+
+
+    # id = int(id)
+    # print "ID is: ", id
+
+
+
+
+    # if id in session['cart']:
+    #     print "this melon is in the cart, adding to the quantity"
+    #     session['cart'][id] = (session['cart'][id]) + 1
+    # else:
+    #     print "this melon is NOT in the cart, adding it, with qty 1"
+    #     session['cart'][id] = 1
+    # # session["cart"].get(id, 0)+1
+    # print "testing: what is the current value if id? ", id
+    # print "testing: what is the value of session['cart'][id]?", session['cart'][id]
+    # print "the cart dict now looks like this: ", session["cart"]
+
+    # pyCart = session['cart']
 
     # Here, we need to pass the melon info to the shopping_cart Python function
     # so that it can add the info to the session dictionary
-    return render_template("cart.html", htmlString = pyString, htmlCart = pyCart, jinName = thisMelon.common_name, jinPrice = thisMelon.price)
-
+    # return render_template("cart.html", jinName = thisMelon.common_name, jinPrice = thisMelon.price, jinCart = pyCart)
 
 @app.route("/login", methods=["GET"])
 def show_login():

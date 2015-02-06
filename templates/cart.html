@@ -2,15 +2,17 @@
 {% block body %}
 <table class="table table-striped">
     <tr><th>Melon Name</th><th>Quantity</th><th>Price</th><th>Total</th></tr>
-    <tr><td>Ledmon TESTING</td><td>2</td><td>$3.00</td><td>$6.00</td></tr>
-    {# <tr><td> {{ melon.common_name }} </td><td> {{ cart.quantity }} </td><td> {{ melon.price }} </td><td> {{ cart.quantity * melon.price }} </td>  </tr> #}
-    <tr><td>{{ jinName }}</td><td> Placeholder qty</td><td>${{ jinPrice }}</td>  </tr>
+    
+    {# <p> {{ jinCart }} </p>
+    { % for each_melon in jinCart % }
+
+        <tr><td>{{ jinName }}</td><td> Placeholder qty</td><td>${{ jinPrice }}</td></tr>
+
+    { % endfor % } #}
+
 </table>
 
 <!--Unpack the tuple here and show it to the user-->
-
-<p> testing string from python: {{ htmlString }} </p>
-<p> list of stuff from cart is: {{ htmlCart }} </p>
 
 
 <h3>Total: $27.00</h3>
