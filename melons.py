@@ -53,15 +53,23 @@ def add_to_cart(id):
     ??? 
     """
 
-    thisMelon = model.get_melon_by_id(id)
-    print vars(thisMelon)
+    # thisMelon = model.get_melon_by_id(id)
+    # print vars(thisMelon)
     #####
+
     if session.get('cart'):
-        print "there is a cart! Proceeding..."
+            if id in session['cart']:
+                print "This is the id", (id)
+                session['cart'][id] += 1
+                print "incremented the quantity"
+            else:
+                session['cart'][id] = 1
+                print "This is the id", (id)
+                print "added stuff to existing cart, contents are", session['cart']
     else:
         session['cart'] = {}
-        print "the cart dict is currently empty. see!:", session['cart']
-
+        session['cart'][id] = 1
+        print "created a cart and added things, its contents are ", session['cart']
 
 
 
@@ -84,11 +92,8 @@ def add_to_cart(id):
     #     session['cart'][id] = (session['cart'][id]) + 1
     # else:
     #     print "this melon is NOT in the cart, adding it, with qty 1"
-    #     session['cart'][id] = 1
-    # # session["cart"].get(id, 0)+1
-    # print "testing: what is the current value if id? ", id
-    # print "testing: what is the value of session['cart'][id]?", session['cart'][id]
-    # print "the cart dict now looks like this: ", session["cart"]
+
+    # session["cart"].get(id, 0)+1
 
     # pyCart = session['cart']
 
